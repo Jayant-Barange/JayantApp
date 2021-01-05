@@ -1,0 +1,67 @@
+Push the code
+	Code commit-create repository- new user- Attact existing policies- Create the user
+	Connect using https-(under security confidentials)- generate credentials- save as a csv file- Use the username and password to connect git repo
+	Clone the repository in AWS- (Windows-show view-other-Git repo)
+		Copy the Url path from code commit and paste in eclipse
+		Provide username and password and select the local folder
+	Push the code- go to team- share project- Finish 
+		Again go to teams- commit- Under Git Staging - select relevant files that are needed to be pushed- click Commit or push
+	See the code in AWS repository 
+	
+	buoldspec.yml- 
+	Creating a container Registory- Copy URL- (Save it somewhere)
+
+ECS
+	Create a cluster- run in default VPC- 
+	create a task defination(These are the versions if the contrainer image)- Use 1GB As task memory and 0.5 v CPU 
+	Add Container 
+		Add container name- Image from previous step with tag(naam jo tumhara maan kare vo rakh sakte ho)- Run it on 8080- Create
+
+Create a Load Balancer
+	Go to load balacer- name, Select two availability zone and subets- 
+	In Step 4- Create a target group -Taget type as IP 
+	Skip target registration
+	Upgraded the Load balancer
+	
+	Modify the security group- Inbound rulesdelete the original- select Custom TCP - add Port range 8080
+		All  TCP- pointing to sg.....(sg-0aa4f559945a99ad) 
+		Http-pointing to all (0.0.0/0)
+		Save
+	
+Modify the service(Elastic container service under services)   
+	Select the service- Under task defination select the latest defination -give the servoice name- Number of tasks as 6
+	Select VPC and two subnets 
+	Select existing security group
+	Auto assign ip =enabled
+	Load balancer - application load balanv=cer along with the taget group(time-30.30)	 	
+	Step3-(1-2-6)- Also add sccaling policy-  Under alarm  alarm name=minicpu threshold- CpU Utilisation shoul be <= 30
+	Scaling action - remove 1 tasks when 30
+	create
+	Save
+Click View Servies
+
+Create the pipeline
+	Search code pipeline
+	Give the name- and click next
+	AWs CodecCommit-master branch-click AWS CodePipeline-Click Next
+	code build provider
+	Create the new project- Give the name - select Operating System- Runtime as standard- Create environment variableby giving the ID as starting value of the URL(36:10)
+	Give buildspec name as book-service/buildspec.yml(accoroding to the location of buildspec)-
+watch video (37:55)
+priviledged enabled
+Continue to code pipelijne
+
+click on next
+
+
+ADD Deploy Stage
+	Select- Amazon ECS- Give Image defination in json format
+	
+open new tab (39:47)
+registry access
+Create pipeline
+
+
+Cloud watch 
+	Look into the ALARM
+Update the service - specift the number of task as 4 and Update the service
